@@ -1,0 +1,15 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:postgresql://${URL}</property> <!-- здесь мы прописываем где находится наша БД-->
+        <property name="connection.username">postgres</property> <!-- Имя пользователя -->
+        <property name="connection.password">mysecretpassword</property> <!-- Пароль БД -->
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!--драйвер для БД, кот. мы загрузили в пом -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property> <!--Диалект конкретной СУБД -->
+        <property name="show_sql">true</property> <!-- Благодаря этой строке при запуске нашего кода в консоле
+        мы будем видеть какое SQL выражение было послано нашей БД из приложения-->
+        <property name="format_sql">true</property>
+        <property name="current_session_context_class">thread</property> <!-- здесь чаще всего указано thread,
+        это означает что когда мы будем создавать сессию для связи с БД, то эта сессия будет привязана к треду в котором мы создаем сессию -->
+        <mapping class="UrlShortener.Entity.UrlTable"/>
+    </session-factory>
+</hibernate-configuration>

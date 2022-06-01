@@ -1,15 +1,20 @@
-package UrlShortener;
+package UrlShortener.DAO;
+
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 
-public class DataBaseRequest {
+public class JDBCRequests implements DAO {
+    private static final Logger log = Logger.getLogger(JDBCRequests.class);
     private static Connection connection = null;
 
-    public DataBaseRequest() throws SQLException {
+    public JDBCRequests() throws SQLException {
         connection = DataBaseSource.getConnection();
     }
 
+    @Override
     public void insertDataIntoDB(String hash, String originalUrl, Timestamp timestamp) {
+        log.info("Используется JDBC");
         try {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO url (hash, originalUrl, createdAt) " +
                     "VALUES (?, ?, ?)");
@@ -23,7 +28,9 @@ public class DataBaseRequest {
         }
     }
 
+    @Override
     public String getFullUrl(String uuid) {
+        log.info("Используется JDBC");
         String fullUrl = null;
         try {
             PreparedStatement stmt = connection.prepareStatement("select originalurl from public.url u \n" +

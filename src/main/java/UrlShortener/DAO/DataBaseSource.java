@@ -1,5 +1,6 @@
-package UrlShortener;
+package UrlShortener.DAO;
 
+import UrlShortener.Constants;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
